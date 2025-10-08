@@ -31,7 +31,7 @@ export function AuthProvider({ children }: { children: any }) {
 
     // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
+      async (_event, session) => {
         setUser(session?.user ?? null)
         if (session?.user) {
           await fetchUserProfile(session.user.id)

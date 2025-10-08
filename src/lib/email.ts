@@ -1,12 +1,12 @@
 import nodemailer from 'nodemailer'
 
-const transporter = nodemailer.createTransporter({
-  host: import.meta.env.VITE_EMAIL_HOST,
+const transporter = nodemailer.createTransport({
+  host: import.meta.env.VITE_EMAIL_HOST || 'smtp.gmail.com',
   port: parseInt(import.meta.env.VITE_EMAIL_PORT || '587'),
   secure: false,
   auth: {
-    user: import.meta.env.VITE_EMAIL_USER,
-    pass: import.meta.env.VITE_EMAIL_PASS,
+    user: import.meta.env.VITE_EMAIL_USER || 'placeholder@example.com',
+    pass: import.meta.env.VITE_EMAIL_PASS || 'placeholder-password',
   },
 })
 
@@ -20,7 +20,7 @@ export interface EmailOptions {
 export async function sendEmail({ to, subject, html, text }: EmailOptions) {
   try {
     const info = await transporter.sendMail({
-      from: import.meta.env.VITE_EMAIL_USER,
+      from: import.meta.env.VITE_EMAIL_USER || 'placeholder@example.com',
       to,
       subject,
       html,

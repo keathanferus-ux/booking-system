@@ -1,6 +1,4 @@
-import { useState, useEffect } from 'preact/hooks'
 import { Router, Route } from 'preact-router'
-import { supabase } from './lib/supabase'
 import { AuthProvider } from './contexts/AuthContext'
 import Layout from './components/Layout'
 import Login from './pages/Login'
